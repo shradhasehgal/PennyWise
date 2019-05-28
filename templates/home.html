@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Expenses app</title>
+	<meta charset="UTF-8">
+	 <link rel="stylesheet" href="{{ url_for('static', filename='trial.css') }}">
+	<link href="https://fonts.googleapis.com/css?family=Lato|Playfair+Display|Heebo|Roboto:900|PT+Serif:700" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+	<h1>My Expenses App</h1>
+
+	<div id="chart_div"></div>
+	<div id="detailedCharts"></div>
+	<div id="inputs">
+		<div id="wrapper">
+			<div class="box">
+				<h2>Add new</h2>
+				<form id="myForm" action="{{request.path}}" method="post"> 
+	 
+					<input type="date" name = "date" id="date" placeholder="Date">
+					<input type="text" name="amt" id="amt" placeholder="Amount">
+					<input type="text" name="about" id="about" placeholder="Description">
+					<input type="submit" id="butt" onclick="display()" value="Submit">
+				</form>
+			</div>
+		</div>
+		<h1>Expenses</h1>
+		<button onclick="usage()">View daily usage</button>
+		<button onclick="um()">View Monthly usage</button>
+		<div id="timeline"> 
+			<ul id="ul1">
+				
+			</ul>
+		</div>
+	</div>
+</body>
+ <script src="{{ url_for('static', filename='script.js') }}"></script>
+ <script>
+	 $(document).ready(function() {
+		 display();
+	 });
+ </script>
+</html>
