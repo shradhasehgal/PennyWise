@@ -43,6 +43,14 @@ class AlchemyEncoder(json.JSONEncoder):
 def home():
 	return render_template('home.html',topic='Home')
 
+@app.route("/daily")
+def daily():
+	return render_template('daily.html',topic='Daily')
+
+@app.route("/monthly")
+def monthly():
+	return render_template('monthly.html',topic='Monthly')
+
 @app.route('/data', methods = ['GET', 'POST'])
 def collect():
 		c = expenses.query.all()
@@ -58,6 +66,16 @@ def new():
 
 	collect()
 	return render_template('home.html')
+
+@app.route("/delete", methods=['GET','POST'])
+def delete():
+
+ 	data = request.get_json()
+ 	print(data)
+ 	remove = expenses.query.filter_by(id=data).first()
+ 	db.session.delete(remove)
+ 	db.session.commit()
+ 	return render_template('home.html')
 
 
 if __name__ == '__main__':

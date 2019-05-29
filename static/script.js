@@ -1,3 +1,15 @@
+function showmore()
+{
+	document.getElementById("more").style.display = "none"; 
+	document.getElementById("content").style.display = "block";
+}
+
+function showless()
+{
+	document.getElementById("content").style.display = "none"; 
+	document.getElementById("more").style.display = "block";
+}
+
 function display() {
     $.ajax({
         type: "GET",
@@ -12,12 +24,14 @@ function display() {
                 var date = result[i].date;
                 var amt = result[i].amount;
                 var about = result[i].reason;
+                var id = result[i].id;
 
                 if (!(date in dict))
                     dict[date] = []
 
                 dict[date].push(amt)
                 dict[date].push(about)
+                dict[date].push(id)
 
             }
 
@@ -43,21 +57,54 @@ function display() {
             dict = sortOnKeys(dict);
 
             var x = ""
-
+            var count = 0
+            var f = 0
             for (var date in dict) {
+
+            	if(count == 6)
+                {
+                	f = 1
+                	x+= '<button id="more" onclick = "showmore()">Read more</button><div id="content">' 
+                }
+
                 x += '<li>' + date + '<ul id="ul2">'
-                for (i = 0; i < dict[date].length; i += 2) {
-                    x += '<li> Rs ' + dict[date][i] + '<p>' + dict[date][i + 1] + '</p></li>'
+
+                for (i = 0; i < dict[date].length; i += 3) {
+                	
+                    x += '<div id="'+dict[date][i+2]+ '+"><li> Rs ' + dict[date][i] + '<p>'+ dict[date][i + 1] + '<span class="close" id="'+dict[date][i+2]+'">&times;</span></p></li></div>'
+                	count += 1;
                 }
 
                 x += '</ul></li>'
             }
+            if(f == 1)
+            	x+= '<button id ="less" onclick = "showless()">Read less</button></div>'
 
             document.getElementById("ul1").innerHTML = x
         }
     });
 }
 
+function del(x)
+{
+	$.ajax({
+        type: "POST",
+        url:"/delete",
+        data: JSON.stringify(x),
+        contentType: 'application/json;charset=UTF-8',
+    });
+}
+
+$("body").on("click", ".close", function() {
+	
+	var x = $(this).attr('id')
+	console.log(x)
+	del(x)
+	x = x + "+"
+	console.log(x)
+	document.getElementById(x).style.display="none"
+})
+ 
 
 function usage() {
     $.ajax({
@@ -66,7 +113,6 @@ function usage() {
 
         success: function(result) {
 
-        	document.getElementById("inputs").style.display = "none";
             result = JSON.parse(result)
             var daily = {}
 
@@ -163,7 +209,6 @@ function um() {
 
         success: function(result) {
 
-        	document.getElementById("inputs").style.display = "none";
             result = JSON.parse(result)
 
             var monthly = {}

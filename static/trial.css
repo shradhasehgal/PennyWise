@@ -6,6 +6,7 @@
 body
 {
 	font-family: 'PT Serif', serif;
+	text-align: center;
 }
 
 h1
@@ -126,6 +127,32 @@ ul
 	box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
 	padding: 5%;
 	margin: 2.5%;
+}
+
+#chart_div, #detailedCharts
+{
+	text-align: center;
+	max-width: 1000px;
+}
+
+#container
+{
+	text-align: center;
+	width: 1000px;
+}
+
+#content
+{
+	display: none;
+}
+
+.close {
+  cursor: pointer;
+  position: absolute;
+  /*top: 0%;*/
+  /*right: 0%;*/
+  padding: 12px 16px;
+  transform: translate(0%, -50%);
 }
 
 @media screen and (max-width: 960px) {

@@ -5,15 +5,13 @@
 	<meta charset="UTF-8">
 	 <link rel="stylesheet" href="{{ url_for('static', filename='trial.css') }}">
 	<link href="https://fonts.googleapis.com/css?family=Lato|Playfair+Display|Heebo|Roboto:900|PT+Serif:700" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
 	<h1>My Expenses App</h1>
 
-	<div id="chart_div"></div>
-	<div id="detailedCharts"></div>
-	<div id="inputs">
+		<div id="inputs">
 		<div id="wrapper">
 			<div class="box">
 				<h2>Add new</h2>
@@ -27,13 +25,14 @@
 			</div>
 		</div>
 		<h1>Expenses</h1>
-		<button onclick="usage()">View daily usage</button>
-		<button onclick="um()">View Monthly usage</button>
+		<a target="_blank" href="{{url_for('daily')}}" ><button>View daily usage</button></a>
+		<a target="_blank" href="{{url_for('monthly')}}" ><button>View monthly usage</button></a>
 		<div id="timeline"> 
 			<ul id="ul1">
 				
 			</ul>
 		</div>
+		<p id="ID" name = "ID" style="display: none;"></p>
 	</div>
 </body>
  <script src="{{ url_for('static', filename='script.js') }}"></script>
@@ -41,5 +40,6 @@
 	 $(document).ready(function() {
 		 display();
 	 });
+
  </script>
 </html>

@@ -10,13 +10,14 @@
 </head>
 <body>
 	<h1>My Expenses App</h1>
-	<div id="chart_div"></div>
-	<div id="detailedCharts"></div>
+	<div id="container">
+		<div id="chart_div"></div>
+	</div>
 	<script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 <script type="text/javascript">
 	window.onload = function() {
-  		um();
+  		usage();
 };
 </script>
 </html>
