@@ -25,14 +25,13 @@
 			</div>
 		</div>
 		<h1>Expenses</h1>
-		<a target="_blank" href="{{url_for('daily')}}" ><button>View daily usage</button></a>
-		<a target="_blank" href="{{url_for('monthly')}}" ><button>View monthly usage</button></a>
+		<a class="ghost" target="_blank" href="{{url_for('daily')}}" >View daily usage</a>
+		<a class="ghost" target="_blank" href="{{url_for('monthly')}}" >View monthly usage</a>
 		<div id="timeline"> 
 			<ul id="ul1">
 				
 			</ul>
 		</div>
-		<p id="ID" name = "ID" style="display: none;"></p>
 	</div>
 </body>
  <script src="{{ url_for('static', filename='script.js') }}"></script>
